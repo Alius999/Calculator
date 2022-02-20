@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="calculator-wrapper">
+        <div class="calculator">
+            <div class="output">
+                <input class="input" type="text" value="">
+            </div>
+
+            <div class="clear regular-button">
+                <button class="clear-btn">C</button>
+            </div>
+            <div class="backspace">
+                <button class="ce-btn">&#8592;</button>
+            </div>
+            <div class="percent regular-button">
+                <button onclick="percent()">%</button>
+            </div>
+            <div class="sqrt regular-button">
+                <button onclick="sqrt()">&#8730;</button>
+            </div>
+
+
+            <div class="one regular-button">
+                <button class="insert-btn" value="1">1</button>
+            </div>
+            <div class="two regular-button">
+                <button class="insert-btn">2</button>
+            </div>
+            <div class="three regular-button">
+                <button class="insert-btn">3</button>
+            </div>
+            <div class="divide regular-button">
+                <button class="insert-btn">/</button>
+            </div>
+
+
+            <div class="four regular-button">
+                <button class="insert-btn">4</button>
+            </div>
+            <div class="five regular-button">
+                <button class="insert-btn">5</button>
+            </div>
+            <div class="six regular-button">
+                <button class="insert-btn">6</button>
+            </div>
+            <div class="multiply regular-button">
+                <button class="insert-btn">*</button>
+            </div>
+
+
+            <div class="seven regular-button">
+                <button class="insert-btn">7</button>
+            </div>
+            <div class="eight regular-button">
+                <button class="insert-btn">8</button>
+            </div>
+            <div class="nine regular-button">
+                <button class="insert-btn">9</button>
+            </div>
+            <div class="plus regular-button">
+                <button class="insert-btn" value="+">+</button>
+            </div>
+
+
+            <div class="zero">
+                <button class="insert-btn">0</button>
+            </div>
+            <div class="point regular-button">
+                <button class="insert-btn">.</button>
+            </div>
+            <div class="minus regular-button">
+                <button class="insert-btn">-</button>
+            </div>
+
+
+            <div class="equals">
+                <button onclick="equal()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ceButton = document.querySelector('.ce-btn');
+        let inputt = document.querySelector('.input');
+        let clearBtn = document.querySelector('.clear-btn');
+        let sqrtBtn = document.querySelector('.sqrt');
+        let insertBtn = document.querySelectorAll('.insert-btn');
+
+        inputt.value = '0';
+
+    for (let btn of insertBtn) {
+        btn.addEventListener('click', function() {
+            let fullValue = inputt.value;
+            if (inputt.value === '0' && fullValue.length == 1) {
+                inputt.value = btn.textContent;
+            } else {
+                inputt.value += btn.textContent;
+            }
+        })
+    }
+
+    ceButton.addEventListener('click', function() {
+        let fullValue = inputt.value;
+        if (fullValue.length == 1) {
+            inputt.value = '0';
+        } else {
+            inputt.value = fullValue.replace(/.$/, '');
+        }
+    })
+
+    clearBtn.addEventListener('click', function() {
+        inputt.value = '0';
+    })
+
+    function equal() {
+        let fullValue = inputt.value;
+        if (fullValue) {
+            inputt.value = eval(fullValue);
+            inputt.value = Math.ceil(inputt.value*1000000000) / 1000000000;
+        }
+    }
+
+    function sqrt() {
+        let fullValue = inputt.value;
+        if (fullValue) {
+            inputt.value = Math.sqrt(eval(fullValue));
+            inputt.value = Math.ceil(inputt.value*100000) / 100000;
+        }
+    }
+
+    function percent() {
+        let fullValue = inputt.value;
+
+        if (fullValue.includes('+')) {
+
+            let operandObject = fullValue.split('+');
+
+            let newArray = Array.from(operandObject);
+
+            let operandA = Number(newArray[1]);
+            let operandB = eval(newArray[0]);
+
+            inputt.value = operandB + (operandB / 100 * operandA);
+            inputt.value = Math.ceil(inputt.value*100000) / 100000;
+
+            console.log(operandA);
+            console.log(operandB);
+        }
+
+        if (fullValue.includes('-')) {
+
+            let operandObject = fullValue.split('-');
+
+            let newArray = Array.from(operandObject);
+
+            let operandA = Number(newArray[1]);
+            let operandB = eval(newArray[0]);
+
+            inputt.value = operandB - (operandB / 100 * operandA);
+            inputt.value = Math.ceil(inputt.value*100000) / 100000;
+
+            console.log(operandA);
+            console.log(operandB);
+        }
+    }
+
+    </script>
+
+</body>
+</html>

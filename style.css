@@ -1,0 +1,93 @@
+.calculator-wrapper {
+    opacity: 1;
+}
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 60px);
+    /* grid-auto-rows: minmax(70px, 100%); */
+    grid-template-areas: 'output output output output output'
+                         'ce percent sqrt backspace backspace'
+                         'one two three divide equals'
+                         'four five six multiply equals'
+                         'seven eight nine plus equals'
+                         'zero zero point minus equals';
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 320px;
+    height: 450px;    
+    margin: 100px auto 0;
+    padding: 20px 10px;
+    align-content: space-between;
+}
+
+.regular-button {
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.output {
+    grid-column: 1 / span 5;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+input {
+    outline: none;
+    border: none;
+    padding: 5px 20px;
+    background-color: rgb(57, 176, 255);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 45px;
+    text-align: right;
+}
+
+.clear {
+    background-color: rgb(255, 123, 0);
+    cursor: pointer;
+}
+
+.equals {
+    grid-column: 5 / 6;
+    grid-row: 3 / 7;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(60, 255, 0);
+}
+
+.zero {
+    grid-column: 1 / 3;
+    grid-row: 6 / 7;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.backspace {
+    grid-column: 4 / 6;
+    grid-row: 2 / 3;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.sqrt {
+    cursor: pointer;
+}
